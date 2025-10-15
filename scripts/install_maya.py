@@ -33,6 +33,13 @@ def install_to_maya(version, toolkit_path):
     scripts_dir.mkdir(parents=True, exist_ok=True)
     icons_dir.mkdir(parents=True, exist_ok=True)
     
+    # Copy shelf icons
+    shelf_icons_dir = toolkit_path.parent.parent / "config" / "icons"
+    if shelf_icons_dir.exists():
+        for icon_file in shelf_icons_dir.glob("qubeX_*.png"):
+            shutil.copy2(icon_file, icons_dir)
+            print(f"  ✓ Copied icon: {icon_file.name}")
+    
     # Copy the toolkit to scripts directory
     toolkit_dest = scripts_dir / "model_pipeline"
     if toolkit_dest.exists():
@@ -121,6 +128,9 @@ def main():
     print("\nTo launch the toolkit, run:")
     print("  from model_pipeline import show_model_toolkit_window")
     print("  show_model_toolkit_window()")
+    print("\nTo create the qubeX shelf, run:")
+    print("  python scripts/create_shelf.py")
+    print("  (or use the MEL script: source config/shelves/shelf_QubeX.mel)")
     
     return True
 

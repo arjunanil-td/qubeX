@@ -13,6 +13,26 @@ A lightweight, standalone model utility toolkit for Maya that provides essential
 
 ### Automatic Installation
 
+#### Windows
+1. Download or clone this repository
+2. Double-click `install_maya.bat` or run:
+   ```cmd
+   install_maya.bat
+   ```
+3. Follow the prompts to install to your desired Maya version(s)
+4. Restart Maya
+
+#### Linux/macOS
+1. Download or clone this repository
+2. Run the installation script:
+   ```bash
+   chmod +x install_maya.sh
+   ./install_maya.sh
+   ```
+3. Follow the prompts to install to your desired Maya version(s)
+4. Restart Maya
+
+#### Manual Python Installation
 1. Download or clone this repository
 2. Run the installation script:
    ```bash
@@ -48,11 +68,36 @@ A lightweight, standalone model utility toolkit for Maya that provides essential
 
 ## Usage
 
+### Creating the QubeX Shelf
+
+After installation, create the QubeX shelf in Maya:
+
+#### Method 1: Using the Batch/Shell Script
+The installation scripts will show you the exact commands to run in Maya.
+
+#### Method 2: Manual Shelf Creation
+In Maya's Script Editor (MEL tab):
+```mel
+source "path/to/qubeX/config/shelves/shelf_QubeX.mel"; shelf_qubeX();
+```
+
+Or in the Python tab:
+```python
+exec(open(r"path/to/qubeX/scripts/create_shelf.py").read())
+```
+
+The shelf will include 5 tools:
+- **Reload**: Reloads qubeX pipeline modules
+- **Model Toolkit**: Launches the main QubeX Model Toolkit UI
+- **Rename Tool**: Launches the advanced rename tool
+- **Hierarchy**: Creates model hierarchy structure
+- **Cleanup**: Runs cleanup utilities
+
 ### Launching the Toolkit
 
 From Maya's Script Editor or command line:
 ```python
-from qubex_model_toolkit import show_model_toolkit_window
+from model_pipeline import show_model_toolkit_window
 show_model_toolkit_window()
 ```
 
